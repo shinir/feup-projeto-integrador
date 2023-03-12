@@ -28,9 +28,7 @@ tables = soup.find_all('table', {'class': 'caixa'})
 
 table = tables[0]
 
-tbody = table.find('tbody')
-
-rows = tbody.find_all('tr')
+rows = table.find_all('tr')
 
 for row in rows:
     cells = row.find_all('td')
