@@ -1,41 +1,97 @@
+import click
 import requests
+import csv
 from bs4 import BeautifulSoup
 
-# specify the url of the .asp webpage to scrape
-url = "https://dges.gov.pt/coloc/2022/col1listaser.asp"
+@click.group()
+def cli():
+    pass
 
-header_params = {
-    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.3 Safari/605.1.15",
-    "Accept-Language": "en-GB,en;q=0.9",
-    "Referer": "https://dges.gov.pt/coloc/2022/col1listaredir.asp"
-}
+@click.option('--filename', prompt='Enter the output file name', help='Name of the output file')
+@cli.command()
+def candidatos(filename):
 
-# Define any request data parameters
-request_data = {
-    "CodCurso": "L224",
-    "CodR": "11",
-    "CodEstab": "1105",
-    "search": "Continuar"
-}
+    # specify the url of the .asp webpage to scrape
+    url = "https://dges.gov.pt/coloc/2022/col1listaser.asp?CodEstab=1105&CodCurso=L224&ids=1&ide=1140&Mx=1140"
 
-# send a GET request to the webpage
-response = requests.get(url, headers=header_params, params=request_data)
+    # Define any request data parameters
+    request_data = {
+        "CodCurso": "L224",
+        "CodR": "11",
+        "CodEstab": "1105",
+        "search": "Continuar"
+    }
 
-# create a BeautifulSoup object to parse the HTML content
-soup = BeautifulSoup(response.content, "html.parser")
+    response = requests.get(url, data=request_data)
 
-tables = soup.find_all('table', {'class': 'caixa'})
+    soup = BeautifulSoup(response.content, "html.parser")
 
-table = tables[0]
+    tables = soup.find_all('table', {'class': 'caixa'})
 
-rows = table.find_all('tr')
+    table = tables[2]
 
-for row in rows:
-    cells = row.find_all('td')
-    for cell in cells:
-        print(cell.text)
+    rows = table.find_all('tr')
+
+    with open(filename + ".csv", "w", newline="") as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerow(["Id", "Name"])
+        for row in table.find_all('tr'):
+            cells = row.find_all('td')
+            data = [col.get_text(strip=True) for col in cells]
+            # Write the data to a row in the CSV file
+            writer.writerow(data)
+    
+    print('Web scraping complete. Data saved to data.csv.')
 
 
-# print the scraped content to the console
-# title = soup.title.string
-# print(title)
+@click.option('--filename', prompt='Enter the output file name', help='Name of the output file')
+@cli.command()
+def colocados(filename):
+
+    import requests
+    import csv
+    from bs4 import BeautifulSoup
+
+    # specify the url of the .asp webpage to scrape
+    url = "https://dges.gov.pt/coloc/2022/col1listacol.asp"
+
+    # Define any request data parameters
+    request_data = {
+        "CodCurso": "L224",
+        "CodR": "11",
+        "CodEstab": "1105",
+        "search": "Continuar"
+    }
+
+    response = requests.get(url, data=request_data)
+
+    soup = BeautifulSoup(response.content, "html.parser")
+
+    tables = soup.find_all('table', {'class': 'caixa'})
+
+    table = tables[2]
+
+    rows = table.find_all('tr')
+
+    with open(filename + ".csv", "w", newline="") as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerow(["Id", "Name"])
+        for row in table.find_all('tr'):
+            cells = row.find_all('td')
+            data = [col.get_text(strip=True) for col in cells]
+            # Write the data to a row in the CSV file
+            writer.writerow(data)
+    
+    print('Web scraping complete. Data saved to data.csv.')
+
+@click.command()
+def exit_program():
+    print('Exiting program...')
+    raise SystemExit
+
+cli.add_command(candidatos)
+cli.add_command(colocados)
+cli.add_command(exit_program)
+
+if __name__ == '__main__':
+    cli()

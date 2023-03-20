@@ -1,3 +1,5 @@
+BEGIN TRANSACTION;
+
 CREATE TABLE "Instituicao" (
 	"codigo" INTEGER PRIMARY KEY,
 	"nome" TEXT NOT NULL,
