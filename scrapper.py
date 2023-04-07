@@ -37,7 +37,6 @@ def candidatos(filename):
 
     with open(filepath + ".csv", "w", newline="") as csvfile:
         writer = csv.writer(csvfile)
-        writer.writerow(["No. order", "Id", "Name", "Media", "Option", "PI", "12", "10/11"])
         for row in table.find_all('tr'):
             cells = row.find_all('td')
             data = [col.get_text(strip=True) for col in cells]
@@ -80,7 +79,6 @@ def colocados(filename):
 
     with open(filepath + ".csv", "w", newline="") as csvfile:
         writer = csv.writer(csvfile)
-        writer.writerow(["Id", "Name"])
         for row in table.find_all('tr'):
             cells = row.find_all('td')
             data = [col.get_text(strip=True) for col in cells]
