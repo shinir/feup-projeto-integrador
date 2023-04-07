@@ -12,7 +12,7 @@ def cli():
 def candidatos(filename):
 
     # specify the url of the .asp webpage to scrape
-    url = "https://dges.gov.pt/coloc/2022/col1listaser.asp?CodEstab=1105&CodCurso=L224&ids=1&ide=1140&Mx=1140"
+    url = "https://dges.gov.pt/coloc/2022/col1listaser.asp?CodEstab=1105&CodCurso=L224&ids=1&ide=2000&Mx=2000"
 
     # Define any request data parameters
     request_data = {
@@ -34,7 +34,7 @@ def candidatos(filename):
 
     with open(filename + ".csv", "w", newline="") as csvfile:
         writer = csv.writer(csvfile)
-        writer.writerow(["Id", "Name"])
+        writer.writerow(["No. order", "Id", "Name", "Media", "Option", "PI", "12", "10/11"])
         for row in table.find_all('tr'):
             cells = row.find_all('td')
             data = [col.get_text(strip=True) for col in cells]
