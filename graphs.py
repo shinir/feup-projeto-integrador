@@ -6,8 +6,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    data1 = read_data('data1.csv')
-    data2 = read_data('data2.csv')
+    data1 = read_data('leic2022.csv')
+    data2 = read_data('isep2022.csv')
     graph = create_graph(data1, data2)
     return render_template('display.html', graph=graph)
 
@@ -19,14 +19,14 @@ def read_data(filename):
 
 def create_graph(data1, data2):
     x1 = [row[0] for row in data1[1:]]
-    y1 = [float(row[1]) for row in data1[1:]]
+    y1 = [float(row[4]) for row in data1[1:]]
     x2 = [row[0] for row in data2[1:]]
-    y2 = [float(row[1]) for row in data2[1:]]
+    y2 = [float(row[4]) for row in data2[1:]]
     plt.plot(x1, y1, label='LEIC')
-    plt.plot(x2, y2, label='ISEP')
-    plt.title('Comparison of Candidatos per Faculty')
-    plt.xlabel('')
-    plt.ylabel('Y-axis')
+    #plt.plot(x2, y2, label='ISEP')
+    plt.title('Comparison of Candidates per Faculty')
+    plt.xlabel('Number of candidates')
+    plt.ylabel('Media')
     plt.legend()
     graph = plt.gcf()
     return graph

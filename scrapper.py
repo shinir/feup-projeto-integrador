@@ -1,3 +1,4 @@
+import os
 import click
 import requests
 import csv
@@ -32,7 +33,9 @@ def candidatos(filename):
 
     rows = table.find_all('tr')
 
-    with open(filename + ".csv", "w", newline="") as csvfile:
+    filepath = os.path.join("csv/", filename)
+
+    with open(filepath + ".csv", "w", newline="") as csvfile:
         writer = csv.writer(csvfile)
         writer.writerow(["No. order", "Id", "Name", "Media", "Option", "PI", "12", "10/11"])
         for row in table.find_all('tr'):
@@ -41,7 +44,7 @@ def candidatos(filename):
             # Write the data to a row in the CSV file
             writer.writerow(data)
     
-    print('Web scraping complete. Data saved to data.csv.')
+    print('Web scraping complete. Data saved to ' + filename + '.csv.')
 
 
 @click.option('--filename', prompt='Enter the output file name', help='Name of the output file')
@@ -73,7 +76,9 @@ def colocados(filename):
 
     rows = table.find_all('tr')
 
-    with open(filename + ".csv", "w", newline="") as csvfile:
+    filepath = os.path.join("csv/", filename)
+
+    with open(filepath + ".csv", "w", newline="") as csvfile:
         writer = csv.writer(csvfile)
         writer.writerow(["Id", "Name"])
         for row in table.find_all('tr'):
@@ -82,7 +87,7 @@ def colocados(filename):
             # Write the data to a row in the CSV file
             writer.writerow(data)
     
-    print('Web scraping complete. Data saved to data.csv.')
+    print('Web scraping complete. Data saved to ' + filename + '.csv.')
 
 @click.command()
 def exit_program():
