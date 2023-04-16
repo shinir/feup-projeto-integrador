@@ -1,14 +1,14 @@
 BEGIN TRANSACTION;
 
 CREATE TABLE "Instituicao" (
-	"codigo" INTEGER PRIMARY KEY,
+	"codigo" STRING PRIMARY KEY,
 	"nome" TEXT NOT NULL,
 	"ensinoSuperior" BOOLEAN NOT NULL
 );
 
 CREATE TABLE "Curso" (
     "id" INTEGER PRIMARY KEY,
-	"codigo" INTEGER NOT NULL,
+	"codigo" TEXT NOT NULL,
 	"nome" TEXT NOT NULL,
 	"vagas" INTEGER NOT NULL,
     "ano" INTEGER NOT NULL,
@@ -28,10 +28,10 @@ CREATE TABLE "Candidatura" (
 	"id" INTEGER NOT NULL,
 	"codigo" TEXT NOT NULL,
 	"nome" TEXT NOT NULL,
-	"media"	TEXT NOT NULL,
+	"media"	FLOAT NOT NULL,
 	"opcao" INTEGER NOT NULL,
-	"pi" INTEGER NOT NULL,
-	"12ano"	INTEGER NOT NULL,
-    "1011ano" INTEGER NOT NULL,
+	"pi" FLOAT NOT NULL,
+	"12ano"	FLOAT NOT NULL,
+    "1011ano" FLOAT NOT NULL,
 	UNIQUE(codigo, nome)
 );
