@@ -21,7 +21,9 @@ CREATE TABLE "Colocado" (
     "id" INTEGER PRIMARY KEY,
 	"codigo" TEXT NOT NULL,
 	"nome" TEXT NOT NULL,
-	UNIQUE(codigo, nome)
+	"curso" INT NOT NULL,
+	FOREIGN KEY(curso) REFERENCES Curso(id),
+	UNIQUE(codigo, nome, curso)
 );
 
 CREATE TABLE "Candidatura" (
@@ -33,5 +35,7 @@ CREATE TABLE "Candidatura" (
 	"pi" FLOAT NOT NULL,
 	"12ano"	FLOAT NOT NULL,
     "1011ano" FLOAT NOT NULL,
-	UNIQUE(codigo, nome)
+	"curso" INT NOT NULL,
+	FOREIGN KEY(curso) REFERENCES Curso(id),
+	UNIQUE(codigo, nome, curso)
 );
