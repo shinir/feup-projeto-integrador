@@ -33,8 +33,8 @@ CREATE TABLE "Candidatura" (
 	"media"	FLOAT NOT NULL,
 	"opcao" INTEGER NOT NULL,
 	"pi" FLOAT NOT NULL,
-	"12ano"	FLOAT NOT NULL,
-    "1011ano" FLOAT NOT NULL,
+	"ano12"	FLOAT NOT NULL,
+	"ano1011" FLOAT NOT NULL,
 	"curso" INT NOT NULL,
 	FOREIGN KEY(curso) REFERENCES Curso(id),
 	UNIQUE(codigo, nome, curso)

@@ -1,35 +1,22 @@
-import csv
 import matplotlib.pyplot as plt
-from flask import Flask, render_template
+import csv
 
-app = Flask(__name__)
+# Open the CSV file
+with open('csv/leic2022.csv') as csvfile:
+    reader = csv.reader(csvfile, delimiter=";")
+    # Read the header row
+    header = next(reader)
+    # Initialize lists to store data
+    x = []
+    y = []
+    # Read each row of data and append to lists
+    for row in reader:
+        x.append(row[3])
+        y.append(float(row[3]))
 
-@app.route('/')
-def index():
-    data1 = read_data('leic2022.csv')
-    data2 = read_data('isep2022.csv')
-    graph = create_graph(data1, data2)
-    return render_template('display.html', graph=graph)
-
-def read_data(filename):
-    with open(filename, 'r') as file:
-        reader = csv.reader(file)
-        data = list(reader)
-    return data
-
-def create_graph(data1, data2):
-    x1 = [row[0] for row in data1[1:]]
-    y1 = [float(row[4]) for row in data1[1:]]
-    x2 = [row[0] for row in data2[1:]]
-    y2 = [float(row[4]) for row in data2[1:]]
-    plt.plot(x1, y1, label='LEIC')
-    #plt.plot(x2, y2, label='ISEP')
-    plt.title('Comparison of Candidates per Faculty')
-    plt.xlabel('Number of candidates')
-    plt.ylabel('Media')
-    plt.legend()
-    graph = plt.gcf()
-    return graph
-
-if __name__ == '__main__':
-    app.run(debug=True)
+# Create the plot
+plt.plot(x, y)
+plt.xlabel("Number of candidates")
+plt.ylabel("Media of candidates")
+plt.title('Data Plot')
+plt.show()
