@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Data Graph</title>
-  </head>
-  <body>
-    <h1>Data Graph</h1>
-    <img src="{{ graph }}" alt="Data Graph">
-    <br>
-    <a href="/graphs/graph.png" download>Download Graph</a>
-  </body>
+<head>
+    <title>Simple Web Page with Data and Graph</title>
+</head>
+<body>
+    <h1>Welcome to my simple web page!</h1>
+    <p>This is a basic example of a web page created using Python, Flask, and a database.</p>
+
+    <h2>Data:</h2>
+    <ul>
+        {% for row in data %}
+            <li>{{ row }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Graph:</h2>
+    <img src="{{ url_for('static', filename='plot.png') }}" alt="Graph">
+
+</body>
 </html>

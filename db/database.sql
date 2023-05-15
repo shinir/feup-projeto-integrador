@@ -1,7 +1,7 @@
 BEGIN TRANSACTION;
 
 CREATE TABLE "Instituicao" (
-	"codigo" STRING PRIMARY KEY,
+	"codigo" TEXT PRIMARY KEY,
 	"nome" TEXT NOT NULL,
 	"ensinoSuperior" BOOLEAN NOT NULL
 );
