@@ -2,6 +2,7 @@ import os
 import csv
 import sqlite3
 
+# Code that transfers a .csv file to a database
 def transfer(filepath, curso):
     # Connect to SQLite database
     conn = sqlite3.connect('db/database.db')

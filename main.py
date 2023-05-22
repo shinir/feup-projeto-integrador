@@ -1,7 +1,5 @@
-from scrapper import scrap
-from dbscrap import dbscrap
+from scrapper import scrap, dbscrap
 from graphs import plotCSV
-from transfer import transfer
 
 def main():
     print("Web Scrapping")
@@ -23,10 +21,9 @@ def main():
 
         filepath.append("csv/" + filename + ".csv")
         dbscrap(codCurso, codR, codEstab, ano, types, filepath[x], curso)
-        #transfer(filepath[x], curso)
 
-    #if types == "0":
-    #    plotCSV(filepath, siglas)
+    if types == "0":
+        plotCSV(filepath, siglas)
 
 
 main()

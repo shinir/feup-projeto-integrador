@@ -2,7 +2,6 @@ import matplotlib.pyplot as plt
 # import plotly
 import csv
 
-
 def plotCSV(filepath, sigla):
     for name, sig in zip(filepath,sigla):
         with open(name) as csvfile:
