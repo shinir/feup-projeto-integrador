@@ -5,6 +5,7 @@ import csv
 import sqlite3
 from bs4 import BeautifulSoup
 
+# Scrap into .csv
 def scrap(codCurso, codR, codEstab, ano, types, filepath):
     # Request Data that passes through the web
     request_data = {
@@ -43,7 +44,9 @@ def scrap(codCurso, codR, codEstab, ano, types, filepath):
             writer.writerow(data)
             #print(data)
             
+# Scrap into.db
 
+# Candidaturas
 def dbscrap(codCurso, codR, codEstab, ano, types, filepath, curso):
 
     conn = sqlite3.connect('db/database.db')
@@ -99,3 +102,8 @@ def dbscrap(codCurso, codR, codEstab, ano, types, filepath, curso):
 
     conn.commit()
     conn.close()
+
+# Colocados 
+
+
+# Cursos
