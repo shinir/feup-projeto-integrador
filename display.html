@@ -1,3 +1,4 @@
+<!--
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,3 +20,42 @@
 
 </body>
 </html>
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Web Page with Data and Graph</title>
+</head>
+<body>
+    <h1>Welcome to my simple web page!</h1>
+    <p>This is a basic example of a web page created using Python, Flask, and a database.</p>
+
+    <h2>Data:</h2>
+    <ul>
+        {% for row in data %}
+            <li>{{ row }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Select Curso:</h2>
+    <form action="/generate-graph" method="POST">
+        <ul>
+            {% for candidatura in data %}
+                {% set curso_id = candidatura[-1] %}
+                {% set curso = cursos[curso_id] %}
+                <li>
+                    <input type="checkbox" name="cursos" value="{{ curso_id }}">{{ curso }}
+                </li>
+            {% endfor %}
+        </ul>
+        <input type="submit" value="Generate Graph">
+    </form>
+
+    <h2>Graph:</h2>
+    <img src="{{ url_for('static', filename='plot.png') }}" alt="Graph">
+
+</body>
+</html>
+
+

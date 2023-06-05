@@ -1,4 +1,4 @@
-from scrapper import scrap, dbscrap
+from scrap.scrapper import scrap, dbscrap
 from graphs import plotCSV
 
 def main():

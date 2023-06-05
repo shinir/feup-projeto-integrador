@@ -15,7 +15,7 @@ def index():
     cursor.execute("SELECT * from candidatura")
     data = cursor.fetchall()
 
-    plot(conn, cursor)
+    #plot(conn, cursor)
 
     # Close the database connection
     cursor.close()
@@ -25,4 +25,4 @@ def index():
     return render_template('display.html', data=data)
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)

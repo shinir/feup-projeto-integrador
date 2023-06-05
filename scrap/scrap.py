@@ -6,8 +6,6 @@ from bs4 import BeautifulSoup
 conn = sqlite3.connect('db/database.db')
 c = conn.cursor()
 
-# Scrape data from website
-
 # Fetch curso data from the Curso table
 c.execute('SELECT id, codigo, nome, ano, instituicao FROM Curso')
 curso_data = c.fetchall()   
