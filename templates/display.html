@@ -33,8 +33,8 @@
     
     <form action="{{ url_for('generate_graphs') }}" method="POST">
         {% for row in data %}
-            <input type="checkbox" name="courses" value="{{ row[2] }}" id="{{ row[2] }}">
-            <label for="{{ row[2] }}">{{ row[0] }} - {{ row[1] }} - {{ row[2] }}</label>
+            <input type="checkbox" name="courses" value="{{ row[3] }}" id="{{ row[3] }}">
+            <label for="{{ row[3] }}">{{ row[0] }} - {{ row[1] }} - {{ row[2] }}</label>
             <br>
         {% endfor %}
         <br>
