@@ -1,31 +1,3 @@
-#from flask import Flask, render_template
-#import sqlite3
-#import matplotlib.pyplot as plt
-#from graphs import plot
-
-#app = Flask(__name__)
-
-#@app.route('/')
-#def index():
-#    # Connect to the database
-#    conn = sqlite3.connect('db/database.db')
-#    cursor = conn.cursor()
-
-    # Retrieve data from the database
-#    cursor.execute("SELECT * from candidatura")
-#    data = cursor.fetchall()
-
-#    plot(conn, cursor)
-
-    # Close the database connection
-#    cursor.close()
-#    conn.close()
-
-    # Render the template and pass the data
-#    return render_template('display.html', data=data)
-
-#if __name__ == '__main__':
-#    app.run()
 
 from flask import Flask, render_template, request, redirect
 import subprocess
@@ -101,33 +73,15 @@ def main(selected_courses):
     conn = sqlite3.connect('db/database.db')
     cursor = conn.cursor()
 
-    # Initialize a list to store the generated graphs
-    graph_filenames = []
-
     # Generate graphs for the selected courses
-    plot(conn, cursor, selected_courses)  # Call plot with the selected_courses list
-
-    # Save the graph as a PNG file for each course
-    for course_id in selected_courses:
-        query = "SELECT codigo, nome FROM Curso WHERE id = ?"
-        cursor.execute(query, (course_id,))
-        course = cursor.fetchone()
-
-        if course:
-
-            # Save the graph as a PNG file in the 'static' folder
-            graph_filename = f'graphs/graph_{course_id}.png'
-            plt.savefig(graph_filename)
-            plt.close()
-
-            graph_filenames.append(graph_filename)
+    plot(conn, cursor, selected_courses, 'graphs/all_courses.png')  # Call plot with the selected_courses list
 
     # Close the database connection
     cursor.close()
     conn.close()
 
     # Return the list of generated graphs
-    return graph_filenames
+    return ['graphs/all_courses.png']
 
 
 if __name__ == '__main__':

@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 
 
-def plot(conn, cursor, course_id_list):
+def plot(conn, cursor, course_id_list, save_filename):
     # Create a new figure
     plt.figure()
 
@@ -29,4 +29,5 @@ def plot(conn, cursor, course_id_list):
     plt.ylabel("Média de candidatura")
     plt.title("Candidatos em 1ª opção")
     plt.legend()
-    plt.show()
+    plt.savefig(save_filename)
+    plt.close()
