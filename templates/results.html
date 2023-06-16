@@ -17,10 +17,11 @@
 <body>
     <h1>Graph Results</h1>
 
-    {% for graph in graphs %}
-        <h2>{{ graph.title }}</h2>
-        <img src="{{ graph.image }}" alt="{{ graph.title }}">
-        <br><br>
-    {% endfor %}
+    <div class="graph-container">
+        <div class="graph">
+            <img src="{{ graph_url }}" alt="Generated Graph">
+        </div>
+    </div>
+    
 </body>
 </html>
