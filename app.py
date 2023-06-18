@@ -9,7 +9,11 @@ from graphs import plot
 app = Flask(__name__)
 
 @app.route('/')
-def index():
+def home():
+    return render_template('home.html')
+
+@app.route('/candidatos')
+def candidatos():
     # Connect to the database and retrieve data from the 'curso' table
     conn = sqlite3.connect('db/database.db')
     cursor = conn.cursor()
@@ -18,16 +22,39 @@ def index():
     cursor.close()
     conn.close()
 
-    return render_template('display.html', data=data)
+    return render_template('display_candidatos.html', data=data)
 
-@app.route('/generate_graphs', methods=['POST'])
-def generate_graphs():
+
+@app.route('/candidatos_graph', methods=['POST'])
+def candidatos_graph():
     selected_courses = request.form.getlist('courses')
 
     # Call the 'main' function to generate the graphs for the selected courses
     graph_filenames = main(selected_courses)
 
     return redirect('/results?graphs=' + ','.join(graph_filenames))
+
+@app.route('/colocados')
+def colocados():
+    # Connect to the database and retrieve data from the 'curso' table
+    conn = sqlite3.connect('db/database.db')
+    cursor = conn.cursor()
+    cursor.execute("SELECT c.instituicao, c.ano, c.nome, c.id FROM Curso c WHERE c.id IN (SELECT curso FROM Candidatura)")
+    data = cursor.fetchall()
+    cursor.close()
+    conn.close()
+
+    return render_template('display_colocados.html', data=data)
+
+@app.route('/colocados_graph', methods=['POST'])
+def colocados_graph():
+    selected_courses = request.form.getlist('courses')
+
+    # Call the 'main' function to generate the graphs for the selected courses
+    graph_filenames = main(selected_courses)
+
+    return redirect('/results?graphs=' + ','.join(graph_filenames))
+
 
 @app.route('/results')
 def display_results():

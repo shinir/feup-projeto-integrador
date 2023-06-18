@@ -1,0 +1,50 @@
+<!--
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Web Page with Data and Graph</title>
+</head>
+<body>
+    <h1>Welcome to my simple web page!</h1>
+    <p>This is a basic example of a web page created using Python, Flask, and a database.</p>
+
+    <h2>Data:</h2>
+    <ul>
+        {% for row in data %}
+            <li>{{ row }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Graph:</h2>
+    <img src="{{ url_for('static', filename='plot.png') }}" alt="Graph">
+
+</body>
+</html>
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generate Graphs</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='display.css') }}">
+</head>
+<body>
+    <h1>Select Course(s)</h1>
+    
+    <form action="{{ url_for('candidatos_graph') }}" method="POST">
+        {% for row in data %}
+            <input type="checkbox" name="courses" value="{{ row[3] }}" id="{{ row[3] }}">
+            <label for="{{ row[3] }}">{{ row[0] }} - {{ row[1] }} - {{ row[2] }}</label>
+            <br>
+        {% endfor %}
+        <br>
+        <input type="submit" value="Generate Graphs">
+    </form>
+</body>
+</html>
+
+
+
+
+
+
