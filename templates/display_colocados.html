@@ -25,11 +25,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Generate Graphs</title>
+    <title>Página de seleção</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='display.css') }}">
 </head>
 <body>
-    <h1>Select Course(s)</h1>
+    <h1>Seleciona o(s) cursos(s)</h1>
     
     <form action="{{ url_for('colocados_graph') }}" method="POST">
         {% for row in data %}
@@ -38,7 +38,7 @@
             <br>
         {% endfor %}
         <br>
-        <input type="submit" value="Generate Graphs">
+        <input type="submit" value="Gerar Gráfico">
     </form>
 </body>
 </html>
