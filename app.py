@@ -26,8 +26,12 @@ def generate_graphs():
 
     # Call the 'main' function to generate the graph for the selected courses
     graph_filename = main(selected_courses)
-
     return render_template('results.html', graph_url=graph_filename)
+
+from flask import send_from_directory 
+@app.route('/graphs/<filename>')
+def serve_dynamic_image(filename):
+    return send_from_directory('graphs', filename)
 
 #@app.route('/results')
 #def display_results():
