@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Resultado</title>
+    <title>Graph Results</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='results.css') }}">
     <style>
         .graph-container {
@@ -15,12 +15,13 @@
     </style>
 </head>
 <body>
-    <h1>Resultado</h1>
+    <h1>Graph Results</h1>
 
-    {% for graph in graphs %}
-        <h2>{{ graph.title }}</h2>
-        <img src="{{ graph.image }}" alt="{{ graph.title }}">
-        <br><br>
-    {% endfor %}
+    <div class="graph-container">
+        <div class="graph">
+            <img src="{{ graph_url }}"alt="Generated Graph">
+        </div>
+    </div>
+    
 </body>
 </html>
