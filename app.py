@@ -1,13 +1,15 @@
 
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect,current_app
 import subprocess
 import sqlite3
 import matplotlib.pyplot as plt
-
 from graphs import plot_candidatos
 from graphs import plot_colocados
 
 app = Flask(__name__)
+
+app.config['MY_GLOBAL_VARIABLE'] = 0
+
 
 @app.route('/')
 def home():
@@ -67,34 +69,44 @@ def serve_dynamic_image(filename):
 
 
 def candidatos_plot(selected_courses):
-    # Connect to the database and retrieve data for the selected courses
+   # Connect to the database and retrieve data for the selected courses
     conn = sqlite3.connect('db/database.db')
     cursor = conn.cursor()
-
+    my_variable = current_app.config['MY_GLOBAL_VARIABLE']
+    if(app.config['MY_GLOBAL_VARIABLE']==10):
+        app.config['MY_GLOBAL_VARIABLE']=0
+    else:
+        app.config['MY_GLOBAL_VARIABLE'] =app.config['MY_GLOBAL_VARIABLE'] +1
+    
     # Generate graphs for the selected courses
-    plot_candidatos(conn, cursor, selected_courses, 'graphs/all_courses.png')  # Call plot with the selected_courses list
+    plot_candidatos(conn, cursor, selected_courses, 'graphs/all_courses'+str(my_variable)+'.png')  # Call plot with the selected_courses list
 
     # Close the database connection
     cursor.close()
     conn.close()
 
     # Return the list of generated graphs
-    return 'graphs/all_courses.png'
+    return 'graphs/all_courses'+str(my_variable)+'.png'
 
 def colocados_plot(selected_courses):
     # Connect to the database and retrieve data for the selected courses
     conn = sqlite3.connect('db/database.db')
     cursor = conn.cursor()
-
+    my_variable = current_app.config['MY_GLOBAL_VARIABLE']
+    if(app.config['MY_GLOBAL_VARIABLE']==10):
+        app.config['MY_GLOBAL_VARIABLE']=0
+    else:
+        app.config['MY_GLOBAL_VARIABLE'] =app.config['MY_GLOBAL_VARIABLE'] +1
+    
     # Generate graphs for the selected courses
-    plot_colocados(conn, cursor, selected_courses, 'graphs/all_courses.png')  # Call plot with the selected_courses list
+    plot_colocados(conn, cursor, selected_courses, 'graphs/all_courses'+str(my_variable)+'.png')  # Call plot with the selected_courses list
 
     # Close the database connection
     cursor.close()
     conn.close()
 
     # Return the list of generated graphs
-    return 'graphs/all_courses.png'
+    return 'graphs/all_courses'+str(my_variable)+'.png'
 
 
 if __name__ == '__main__':
