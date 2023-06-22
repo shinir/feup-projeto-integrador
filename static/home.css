@@ -1,0 +1,56 @@
+/* Apply some basic styling to the body */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f0f0f0;
+  }
+  
+  /* Style the buttons */
+  button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    border-radius: 5px;
+  }
+  
+  /* Change the background color and cursor on hover */
+  button:hover {
+    background-color: #45a049; /* Darker green */
+    cursor: pointer;
+  }
+  
+  /* Apply some basic styling to the links within the buttons */
+  button a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  /* Adjust the layout of the buttons */
+  #button1 {
+    margin-right: 20px;
+  }
+  
+  /* Center the buttons */
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  /* Adjust the width of the buttons on smaller screens */
+  @media (max-width: 768px) {
+    button {
+      width: 100%;
+    }
+  }
+  

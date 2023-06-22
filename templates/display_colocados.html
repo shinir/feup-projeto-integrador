@@ -32,13 +32,13 @@
     <h1>Seleciona o(s) cursos(s)</h1>
     
     <form action="{{ url_for('colocados_graph') }}" method="POST">
+        <input type="submit" value="Gerar Gráfico">
+        <br><br>
         {% for row in data %}
             <input type="checkbox" name="courses" value="{{ row[3] }}" id="{{ row[3] }}">
-            <label for="{{ row[3] }}">{{ row[0] }} - {{ row[1] }} - {{ row[2] }}</label>
+            <label for="{{ row[3] }}">{{ row[4] }} - {{ row[1] }} - {{ row[2] }}</label>
             <br>
         {% endfor %}
-        <br>
-        <input type="submit" value="Gerar Gráfico">
     </form>
 </body>
 </html>

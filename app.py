@@ -20,7 +20,7 @@ def candidatos():
     # Connect to the database and retrieve data from the 'curso' table
     conn = sqlite3.connect('db/database.db')
     cursor = conn.cursor()
-    cursor.execute("SELECT c.instituicao, c.ano, c.nome, c.id FROM Curso c WHERE c.id IN (SELECT curso FROM Candidatura)")
+    cursor.execute("SELECT c.instituicao, c.ano, c.nome, c.id ,i.nome FROM Curso c, Instituicao i WHERE c.id IN (SELECT curso FROM Candidatura) AND i.codigo==c.instituicao order by c.instituicao, c.nome,c.ano")
     data = cursor.fetchall()
     cursor.close()
     conn.close()
@@ -42,7 +42,7 @@ def colocados():
     # Connect to the database and retrieve data from the 'curso' table
     conn = sqlite3.connect('db/database.db')
     cursor = conn.cursor()
-    cursor.execute("SELECT c.instituicao, c.ano, c.nome, c.id FROM Curso c WHERE c.id IN (SELECT curso FROM Candidatura)")
+    cursor.execute("SELECT c.instituicao, c.ano, c.nome, c.id ,i.nome FROM Curso c, Instituicao i WHERE c.id IN (SELECT curso FROM Candidatura) AND i.codigo==c.instituicao order by c.instituicao, c.nome,c.ano")
     data = cursor.fetchall()
     cursor.close()
     conn.close()

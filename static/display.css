@@ -1,24 +1,44 @@
-body {
-    font-family: Arial, sans-serif;
-  }
-  
-  .container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  h1 {
-    text-align: center;
-  }
-  
-  form {
-    margin-top: 20px;
-  }
-  
-  input[type="submit"] {
-    display: block;
-    margin: 20px auto;
-  }
-  
-  
+/* display.css */
+
+/* Styles for the heading */
+h1 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Styles for the checkboxes and labels */
+input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+label {
+  color: #666;
+  font-size: 16px;
+}
+
+/* Styles for the form */
+form {
+  margin-top: 20px;
+}
+
+/* Styles for the submit button */
+input[type="submit"] {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px;
+  cursor: pointer;
+  transition-duration: 0.4s;
+  border-radius: 5px;
+}
+
+input[type="submit"]:hover {    
+  background-color: #45a049; /* Darker green */
+  cursor: pointer;
+}
