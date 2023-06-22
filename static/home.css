@@ -8,7 +8,7 @@ body {
   
   /* Style the buttons */
   button {
-    background-color: #4CAF50; /* Green */
+    background-color: #9C2D19; /* Green */
     border: none;
     color: white;
     padding: 10px 20px;
@@ -24,7 +24,7 @@ body {
   
   /* Change the background color and cursor on hover */
   button:hover {
-    background-color: #45a049; /* Darker green */
+    background-color: #722113; /* Darker green */
     cursor: pointer;
   }
   

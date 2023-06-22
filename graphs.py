@@ -10,7 +10,7 @@ def plot_candidatos(conn, cursor, course_id_list, save_filename):
         SELECT c.id, c.media, cu.nome, cu.ano
         FROM Candidatura c
         INNER JOIN Curso cu ON c.curso = cu.id
-        WHERE c.curso = ?
+        WHERE c.curso = ? AND c.opcao=1
         """
         cursor.execute(query, (course_id,))
 

@@ -74,7 +74,7 @@ def candidatos_plot(selected_courses):
     cursor = conn.cursor()
     my_variable = current_app.config['MY_GLOBAL_VARIABLE']
     if(app.config['MY_GLOBAL_VARIABLE']==10):
-        app.config['MY_GLOBAL_VARIABLE']=0
+        app.config['MY_GLOBAL_VARIABLE'] =app.config['MY_GLOBAL_VARIABLE'] +1
     else:
         app.config['MY_GLOBAL_VARIABLE'] =app.config['MY_GLOBAL_VARIABLE'] +1
     
