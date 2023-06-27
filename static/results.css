@@ -21,5 +21,25 @@ body {
   .graph {
     margin: 20px;
   }
-  
+  /* Styles for the submit button */
+input[type="submit"] {
+  background-color: #9C2D19; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px;
+  cursor: pointer;
+  transition-duration: 0.4s;
+  border-radius: 5px;
+}
+
+input[type="submit"]:hover {    
+  background-color: #722113; /* Darker green */
+  cursor: pointer;
+}
+
   
